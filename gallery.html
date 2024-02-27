@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <link rel="stylesheet" href="css/style.css"
+</head>
+<body>
+    <header>
+        <h1>Gallery</h1> <div class="photo5"><img src="images/photo5.png" alt="photo description"></div>  
+        <nav>
+            <div class="hamburger">☰</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="article.html">Article</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>        
+    </header>
+    <div class="gallery-container">
+        
+        <div class="photo"><img src="images/photo1.jpg" alt="photo description"></div>
+        <div class="photo"><img src="images/photo2.jpg" alt="photo description"></div>
+        <div class="photo"><img src="images/photo3.jpg" alt="photo description"></div>
+        <div class="photo"><img src="images/photo4.jpg" alt="photo description"></div>
+      </div>
+      
+      <div class="gallery-controls">
+        <button id="prev">Previous</button>
+        <button id="next">Next</button>
+      </div>
+
+</main>
+    <script>
+        document.querySelector('.hamburger').addEventListener('click',function(){
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+    </script>
+    <script>
+       var currentIndex = 0;
+        var images = ["images/photo1.jpg", "images/photo2.jpg", "images/photo3.jpg", "images/photo4.jpg"];
+      
+        function showImage(index) {
+          
+          var photoDivs = document.querySelectorAll('.photo img');
+          for (var i = 0; i < photoDivs.length; i++) {
+            if (i === index) {
+              photoDivs[i].style.display = 'block';
+            } else {
+              photoDivs[i].style.display = 'none';
+            }
+          }
+        }
+      
+        document.getElementById("prev").addEventListener("click", function() {
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          showImage(currentIndex);
+        });
+      
+        document.getElementById("next").addEventListener("click", function() {
+          currentIndex = (currentIndex + 1) % images.length;
+          showImage(currentIndex);
+        });
+      
+        showImage(currentIndex);
+    </script>
+</body>
+</html>
